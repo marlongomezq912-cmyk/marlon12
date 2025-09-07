@@ -64,5 +64,51 @@ if 0 <= indice < len(matriz):
         print(fila)
 else:
     print("❌ Índice de fila inválido.")
+    
+# Datos de temperaturas: [ciudad][semana][día]
+temperaturas = [
+    # Ciudad 1
+    [
+        [30, 31, 32, 33, 34, 35, 36],  # Semana 1
+        [31, 32, 33, 34, 35, 36, 37],  # Semana 2
+    ],
+    # Ciudad 2
+    [
+        [25, 26, 27, 28, 29, 30, 31],
+        [26, 27, 28, 29, 30, 31, 32],
+    ],
+    # Ciudad 3
+    [
+        [20, 21, 22, 23, 24, 25, 26],
+        [21, 22, 23, 24, 25, 26, 27],
+    ]
+]
+
+# Nombres de ciudades (para mostrar)
+ciudades = ["Ciudad A", "Ciudad B", "Ciudad C"]
+
+# Calcular promedio por ciudad y semana
+for i in range(len(temperaturas)):  # Iterar sobre ciudades
+    print(f"\nPromedios para {ciudades[i]}:")
+    for j in range(len(temperaturas[i])):  # Iterar sobre semanas
+        suma = 0
+        for k in range(len(temperaturas[i][j])):  # Iterar sobre días
+            suma += temperaturas[i][j][k]
+        promedio = suma / len(temperaturas[i][j])
+        print(f"  Semana {j + 1}: {promedio:.2f} °C")
+
+
+Promedios para Ciudad A:
+  Semana 1: 33.00 °C
+  Semana 2: 34.00 °C
+
+Promedios para Ciudad B:
+  Semana 1: 28.00 °C
+  Semana 2: 29.00 °C
+
+Promedios para Ciudad C:
+  Semana 1: 23.00 °C
+  Semana 2: 24.00 °C
+
 
 
