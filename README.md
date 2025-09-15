@@ -110,5 +110,47 @@ Promedios para Ciudad C:
   Semana 1: 23.00 °C
   Semana 2: 24.00 °C
 
+  # Datos de ejemplo: temperaturas por ciudad y semana
+temperaturas = {
+    "CiudadA": [[25, 26, 27, 24], [26, 25, 27, 28], [24, 26, 25, 23], [25, 27, 26, 28]],
+    "CiudadB": [[30, 31, 29, 30], [31, 30, 29, 28], [30, 30, 30, 29], [29, 30, 31, 32]],
+    "CiudadC": [[15, 16, 14, 15], [16, 15, 14, 15], [15, 14, 13, 16], [14, 15, 16, 15]],
+}
+def calcular_temperatura_promedio(datos_temperatura):
+    """
+    Calcula la temperatura promedio para cada ciudad.
+
+    Parámetros:
+    datos_temperatura (dict): Diccionario con nombres de ciudades como claves y listas de semanas como valores.
+                              Cada semana es una lista con temperaturas diarias.
+
+    Retorna:
+    dict: Diccionario con el promedio de temperatura para cada ciudad.
+    """
+    promedios = {}
+    
+    for ciudad, semanas in datos_temperatura.items():
+        suma_total = 0
+        conteo = 0
+        for semana in semanas:
+            suma_total += sum(semana)
+            conteo += len(semana)
+        promedio = suma_total / conteo if conteo > 0 else 0
+        promedios[ciudad] = round(promedio, 2)  # redondeamos a 2 decimales
+    
+    return promedios
+if __name__ == "__main__":
+    temperaturas = {
+        "CiudadA": [[25, 26, 27, 24], [26, 25, 27, 28], [24, 26, 25, 23], [25, 27, 26, 28]],
+        "CiudadB": [[30, 31, 29, 30], [31, 30, 29, 28], [30, 30, 30, 29], [29, 30, 31, 32]],
+        "CiudadC": [[15, 16, 14, 15], [16, 15, 14, 15], [15, 14, 13, 16], [14, 15, 16, 15]],
+    }
+
+    resultado = calcular_temperatura_promedio(temperaturas)
+    print("Promedio de temperaturas por ciudad:")
+    for ciudad, promedio in resultado.items():
+        print(f"{ciudad}: {promedio}°C")
+
+
 
 
