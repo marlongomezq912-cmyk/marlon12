@@ -150,6 +150,46 @@ if __name__ == "__main__":
     print("Promedio de temperaturas por ciudad:")
     for ciudad, promedio in resultado.items():
         print(f"{ciudad}: {promedio}°C")
+        # Función para calcular el descuento
+def calcular_descuento(monto_total, porcentaje_descuento=10):
+    """
+    Calcula el descuento aplicado a una compra.
+
+    :param monto_total: float, monto total de la compra
+    :param porcentaje_descuento: float, porcentaje de descuento (por defecto 10%)
+    :return: float, monto del descuento
+    """
+    descuento = monto_total * (porcentaje_descuento / 100)
+    return descuento
+
+
+# Programa principal
+if __name__ == "__main__":
+    # Primera llamada: solo monto (usa el 10% por defecto)
+    monto1 = 200
+    descuento1 = calcular_descuento(monto1)
+    total1 = monto1 - descuento1
+
+    print(f"Compra: ${monto1}")
+    print(f"Descuento aplicado (10%): ${descuento1}")
+    print(f"Monto final a pagar: ${total1}\n")
+
+    # Segunda llamada: monto y porcentaje definido por el usuario
+    monto2 = 350
+    descuento2 = calcular_descuento(monto2, 15)
+    total2 = monto2 - descuento2
+
+    print(f"Compra: ${monto2}")
+    print(f"Descuento aplicado (15%): ${descuento2}")
+    print(f"Monto final a pagar: ${total2}")
+Compra: $200
+Descuento aplicado (10%): $20.0
+Monto final a pagar: $180.0
+
+Compra: $350
+Descuento aplicado (15%): $52.5
+Monto final a pagar: $297.5
+
 
 
 
