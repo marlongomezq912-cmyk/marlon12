@@ -196,23 +196,18 @@ informacion_personal = {
     "ciudad": "Quito",
     "profesion": "Ingeniera Civil"
 }
-
-# Acceder y modificar el valor de la clave 'ciudad'
 informacion_personal["ciudad"] = "Guayaquil"  # Cambiamos de Quito a Guayaquil
 
-# Agregar una nueva clave-valor al diccionario (ya estaba 'profesion', pero la tarea lo solicita, se puede hacer con otra profesión o clave adicional)
-# Por ejemplo, si ya existe 'profesion', podemos actualizarla o añadir otra relacionada, como 'cargo'
+
 informacion_personal["cargo"] = "Supervisora de obra"
 
-# Verificar si la clave 'telefono' existe, y si no, agregarla
+
 if "telefono" not in informacion_personal:
     informacion_personal["telefono"] = "0999999999"  # Número ficticio
 
-# Eliminar la clave 'edad' del diccionario
 if "edad" in informacion_personal:
     del informacion_personal["edad"]
 
-# Imprimir el diccionario final
 print("Diccionario final con la información personal:")
 print(informacion_personal)
 Diccionario final con la información personal:
