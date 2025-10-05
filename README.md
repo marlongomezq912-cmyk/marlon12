@@ -218,6 +218,25 @@ Diccionario final con la información personal:
     'cargo': 'Supervisora de obra',
     'telefono': '0999999999'
 }
+# Escritura y lectura de archivos de texto en Python
+
+# 1️⃣ CREACIÓN Y ESCRITURA EN EL ARCHIVO
+# Abrimos (o creamos si no existe) un archivo llamado 'my_notes.txt' en modo escritura ('w')
+# El modo 'w' sobrescribe el contenido si el archivo ya existe
+with open("my_notes.txt", "w") as archivo:
+    # Escribimos tres líneas de notas personales en el archivo
+    archivo.write("Nota 1: Hoy aprendí sobre manejo de archivos en Python.\n")
+    archivo.write("Nota 2: La función write() se usa para escribir en un archivo.\n")
+    archivo.write("Nota 3: Es importante cerrar el archivo después de usarlo.\n")
+
+with open("my_notes.txt", "r") as archivo:
+    # Leemos línea por línea usando readline() dentro de un bucle
+    linea = archivo.readline()  # Lee la primera línea
+    while linea:
+        print(linea.strip())  # Mostramos la línea sin salto de línea adicional
+        linea = archivo.readline()  # Leemos la siguiente línea
+
+print("\n✅ Operación completada: archivo leído y cerrado correctamente.")
 
 
 
