@@ -238,6 +238,68 @@ with open("my_notes.txt", "r") as archivo:
 
 print("\n✅ Operación completada: archivo leído y cerrado correctamente.")
 
+from abc import ABC, abstractmethod
+
+class Figura(ABC):  # Clase abstracta
+    @abstractmethod
+    def area(self):
+        pass  # Solo definimos el método, no su implementación
+
+class Cuadrado(Figura):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def area(self):
+        return self.lado * self.lado
+
+# Uso
+figura = Cuadrado(5)
+print("Área del cuadrado:", figura.area())
+class CuentaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.__saldo = saldo  # Atributo privado
+
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self.__saldo += cantidad
+
+    def obtener_saldo(self):
+        return self.__saldo  # Getter
+
+# Uso
+cuenta = CuentaBancaria("Ana", 1000)
+cuenta.depositar(500)
+print("Saldo actual:", cuenta.obtener_saldo())
+class Persona:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def presentarse(self):
+        return f"Hola, soy {self.nombre}"
+
+class Estudiante(Persona):  # Hereda de Persona
+    def __init__(self, nombre, carrera):
+        super().__init__(nombre)  # Llamamos al constructor de Persona
+        self.carrera = carrera
+
+# Uso
+e = Estudiante("Carlos", "Ingeniería")
+print(e.presentarse())
+class Perro:
+    def sonido(self):
+        return "Guau"
+
+class Gato:
+    def sonido(self):
+        return "Miau"
+
+def hacer_sonar(animal):
+    print(animal.sonido())
+
+# Uso
+hacer_sonar(Perro())
+hacer_sonar(Gato())
 
 
 
