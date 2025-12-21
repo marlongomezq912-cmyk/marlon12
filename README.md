@@ -301,6 +301,78 @@ def hacer_sonar(animal):
 hacer_sonar(Perro())
 hacer_sonar(Gato())
 
+# Clase Producto
+# Representa un producto dentro de una tienda
+class Producto:
+    def __init__(self, nombre, precio):
+        self.nombre = nombre
+        self.precio = precio
+
+    def mostrar_info(self):
+        return f"Producto: {self.nombre}, Precio: ${self.precio}"
+
+
+# Clase Cliente
+# Representa a un cliente que puede comprar productos
+class Cliente:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.carrito = []
+
+    def agregar_al_carrito(self, producto):
+        self.carrito.append(producto)
+        print(f"{producto.nombre} agregado al carrito de {self.nombre}")
+
+    def total_compra(self):
+        total = sum(producto.precio for producto in self.carrito)
+        return total
+
+
+# Clase Tienda
+# Controla los productos disponibles y las ventas
+class Tienda:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.productos = []
+
+    def agregar_producto(self, producto):
+        self.productos.append(producto)
+
+    def mostrar_productos(self):
+        print(f"Productos disponibles en {self.nombre}:")
+        for producto in self.productos:
+            print(producto.mostrar_info())
+
+
+# -----------------------------
+# Programa principal
+# -----------------------------
+
+# Crear la tienda
+tienda = Tienda("Tienda Virtual")
+
+# Crear productos
+producto1 = Producto("Laptop", 800)
+producto2 = Producto("Mouse", 20)
+
+# Agregar productos a la tienda
+tienda.agregar_producto(producto1)
+tienda.agregar_producto(producto2)
+
+# Mostrar productos disponibles
+tienda.mostrar_productos()
+
+# Crear cliente
+cliente = Cliente("Juan")
+
+# Cliente compra productos
+cliente.agregar_al_carrito(producto1)
+cliente.agregar_al_carrito(producto2)
+
+# Mostrar total de la compra
+print(f"Total a pagar: ${cliente.total_compra()}")
+
+
 
 
 
