@@ -371,6 +371,36 @@ cliente.agregar_al_carrito(producto2)
 
 # Mostrar total de la compra
 print(f"Total a pagar: ${cliente.total_compra()}")
+"""
+Programa: Conversor de Temperatura
+Descripción: Este programa convierte una temperatura ingresada en grados Celsius
+a grados Fahrenheit y muestra el resultado en pantalla.
+"""
+
+# Función para convertir de Celsius a Fahrenheit
+def convertir_celsius_a_fahrenheit(temperatura_celsius):
+    temperatura_fahrenheit = (temperatura_celsius * 9 / 5) + 32
+    return temperatura_fahrenheit
+
+
+# Entrada de datos
+nombre_usuario = input("Ingrese su nombre: ")        # Tipo de dato: string
+temperatura_celsius = float(input("Ingrese la temperatura en °C: "))  # float
+
+# Proceso
+temperatura_fahrenheit = convertir_celsius_a_fahrenheit(temperatura_celsius)
+
+# Tipo de dato boolean
+temperatura_alta = temperatura_fahrenheit > 86
+
+# Salida de datos
+print(f"\nHola {nombre_usuario}")
+print(f"La temperatura en Fahrenheit es: {temperatura_fahrenheit:.2f} °F")
+
+if temperatura_alta:
+    print("La temperatura es considerada alta.")
+else:
+    print("La temperatura es considerada normal.")
 
 
 
