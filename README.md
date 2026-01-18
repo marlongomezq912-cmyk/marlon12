@@ -401,6 +401,58 @@ if temperatura_alta:
     print("La temperatura es considerada alta.")
 else:
     print("La temperatura es considerada normal.")
+# =========================================
+# Programa que demuestra Programación Orientada a Objetos en Python
+# Conceptos: Clase, Objeto, Herencia, Encapsulación y Polimorfismo
+# =========================================
+
+# Clase base
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.__edad = edad  # Encapsulación: atributo privado
+
+    # Método getter para acceder al atributo privado
+    def get_edad(self):
+        return self.__edad
+
+    # Método setter para modificar el atributo privado
+    def set_edad(self, edad):
+        if edad > 0:
+            self.__edad = edad
+        else:
+            print("La edad debe ser mayor que cero.")
+
+    # Método que será sobrescrito (polimorfismo)
+    def mostrar_info(self):
+        return f"Nombre: {self.nombre}, Edad: {self.__edad}"
+
+
+# Clase derivada (Herencia)
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, carrera):
+        super().__init__(nombre, edad)
+        self.carrera = carrera
+
+    # Polimorfismo: sobrescritura del método
+    def mostrar_info(self):
+        return f"Nombre: {self.nombre}, Edad: {self.get_edad()}, Carrera: {self.carrera}"
+
+
+# ==========================
+# Programa principal
+# ==========================
+if __name__ == "__main__":
+    # Creación de objetos
+    persona1 = Persona("Carlos", 40)
+    estudiante1 = Estudiante("María", 20, "Ingeniería en Sistemas")
+
+    # Uso de métodos
+    print("Información de la Persona:")
+    print(persona1.mostrar_info())
+
+    print("\nInformación del Estudiante:")
+    print(estudiante
 
 
 
