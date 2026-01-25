@@ -452,10 +452,23 @@ if __name__ == "__main__":
     print(persona1.mostrar_info())
 
     print("\nInformación del Estudiante:")
-    print(estudiante
+    print(e`````
 
 
 
+class Archivo:
+    """
+    Clase que demuestra el uso de constructores y destructores en Python.
+    """
 
+    def __init__(self, nombre_archivo):
+        """
+        Constructor:
+        Se ejecuta automáticamente cuando se crea una instancia de la clase.
+        Inicializa los atributos del objeto y abre el archivo.
+        """
+        self.nombre_archivo = nombre_archivo
+        self.archivo = open(nombre_archivo, 'w')
+        print(f"Archivo '{self.nombre_archivo}' ab_
 
 
