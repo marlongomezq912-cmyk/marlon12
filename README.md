@@ -472,3 +472,115 @@ class Archivo:
         print(f"Archivo '{self.nombre_archivo}' ab_
 
 
+
+
+         # producto.py
+# Clase que representa un producto dentro del inventario
+
+class Producto:
+    def __init__(self, id_producto, nombre, cantidad, precio):
+        """
+        Constructor de la clase Producto.
+        :param id_producto: Identificador único del producto
+        :param nombre: Nombre del producto
+        :param cantidad: Cantidad disponible en inventario
+        :param precio: Precio del producto
+        """
+        self._id = id_producto
+        self._nombre = nombre
+        self._cantidad = cantidad
+        self._precio = precio
+
+    # Getters
+    def get_id(self):
+        return self._id
+
+    def get_nombre(self):
+        return self._nombre
+
+    def get_cantidad(self):
+        return self._cantidad
+
+    def get_precio(self):
+        return self._precio
+
+    # Setters
+    def set_nombre(self, nombre):
+        self._nombre = nombre
+
+    def set_cantidad(self, cantidad):
+        self._cantidad = cantidad
+
+    def set_precio(self, precio):
+        self._precio = precio
+
+    def __str__(self):
+        return f"ID: {self._id} | Nombre: {self._nombre} | Cantidad: {self._cantidad} | Precio: ${self._precio:.2f}"
+# inventario.py
+# Clase que gestiona la lista de productos
+
+from producto import Producto
+
+class Inventario:
+    def __init__(self):
+        """
+        Constructor de la clase Inventario.
+        Inicializa una lista vacía de productos.
+        """
+        self.productos = []
+
+    def añadir_producto(self, producto):
+        """
+        Añade un producto asegurando que el ID sea único.
+        """
+        for p in self.productos:
+            if p.get_id() == producto.get_id():
+                print("Error: Ya existe un producto con ese ID.")
+                return
+        self.productos.append(producto)
+        print("Producto añadido correctamente.")
+
+    def eliminar_producto(self, id_producto):
+        """
+        Elimina un producto por su ID.
+        """
+        for p in self.productos:
+            if p.get_id() == id_producto:
+                self.productos.remove(p)
+                print("Producto eliminado correctamente.")
+                return
+        print("Producto no encontrado.")
+
+    def actualizar_producto(self, id_producto, cantidad=None, precio=None):
+        """
+        Actualiza cantidad o precio de un producto por ID.
+        """
+        for p in self.productos:
+            if p.get_id() == id_producto:
+                if cantidad is not None:
+                    p.set_cantidad(cantidad)
+                if precio is not None:
+                    p.set_precio(precio)
+                print("Producto actualizado correctamente.")
+                return
+        print("Producto no encontrado.")
+
+    def buscar_por_nombre(self, nombre):
+        """
+        Busca productos que contengan el nombre ingresado.
+        """
+        resultados = [p for p in self.productos if nombre.lower() in p.get_nombre().lower()]
+        return resultados
+
+    def mostrar_todos(self):
+        """
+        Muestra todos los productos del inventario.
+        """
+        if not self.productos:
+            print("El inventario está vacío.")
+        else:
+            for p in self.productos:
+                print(p)
+
+
+
