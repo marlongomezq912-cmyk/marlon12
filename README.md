@@ -584,3 +584,158 @@ class Inventario:
 
 
 
+
+
+# Clase Producto
+class Producto:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+
+    def __str__(self):
+        return f"{self.nombre} - Precio: ${self.precio} - Cantidad: {self.cantidad}"
+
+
+# -----------------------------
+# Clase Inventario
+# -----------------------------
+class Inventario:
+    def __init__(self, archivo="inventario.txt"):
+        self.archivo = archivo
+        self.productos = {}
+        self.cargar_inventario()
+
+    # -----------------------------
+    # Cargar inventario desde archivo
+    # -----------------------------
+    def cargar_inventario(self):
+        try:
+            with open(self.archivo, "r") as file:
+                for linea in file:
+                    try:
+                        nombre, precio, cantidad = linea.strip().split(",")
+                        self.productos[nombre] = Producto(
+                            nombre, float(precio), int(cantidad)
+                        )
+                    except ValueError:
+                        print("⚠ Línea corrupta ignorada:", linea.strip())
+
+        except FileNotFoundError:
+            print("📁 Archivo no encontrado. Creando inventario nuevo...")
+            self.guardar_inventario()
+
+        except PermissionError:
+            print("❌ Error: No tienes permisos para leer el archivo.")
+
+    # -----------------------------
+    # Guardar inventario en archivo
+    # -----------------------------
+    def guardar_inventario(self):
+        try:
+            with open(self.archivo, "w") as file:
+                for producto in self.productos.values():
+                    file.write(f"{producto.nombre},{producto.precio},{producto.cantidad}\n")
+
+        except PermissionError:
+            print("❌ Error: No tienes permisos para escribir en el archivo.")
+
+    # -----------------------------
+    # Añadir producto
+    # -----------------------------
+    def añadir_producto(self, nombre, precio, cantidad):
+        if nombre in self.productos:
+            print("⚠ El producto ya existe.")
+            return
+
+        self.productos[nombre] = Producto(nombre, precio, cantidad)
+        self.guardar_inventario()
+        print("✅ Producto añadido correctamente.")
+
+    # -----------------------------
+    # Actualizar producto
+    # -----------------------------
+    def actualizar_producto(self, nombre, precio, cantidad):
+        if nombre not in self.productos:
+            print("⚠ Producto no encontrado.")
+            return
+
+        self.productos[nombre].precio = precio
+        self.productos[nombre].cantidad = cantidad
+        self.guardar_inventario()
+        print("✅ Producto actualizado correctamente.")
+
+    # -----------------------------
+    # Eliminar producto
+    # -----------------------------
+    def eliminar_producto(self, nombre):
+        if nombre not in self.productos:
+            print("⚠ Producto no encontrado.")
+            return
+
+        del self.productos[nombre]
+        self.guardar_inventario()
+        print("✅ Producto eliminado correctamente.")
+
+    # -----------------------------
+    # Mostrar inventario
+    # -----------------------------
+    def mostrar_inventario(self):
+        if not self.productos:
+            print("📦 Inventario vacío.")
+            return
+
+        print("\n📋 Inventario:")
+        for producto in self.productos.values():
+            print(producto)
+
+
+# -----------------------------
+# Interfaz de Consola
+# -----------------------------
+def menu():
+    inventario = Inventario()
+
+    while True:
+        print("\n===== SISTEMA DE INVENTARIO =====")
+        print("1. Añadir producto")
+        print("2. Actualizar producto")
+        print("3. Eliminar producto")
+        print("4. Mostrar inventario")
+        print("5. Salir")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            nombre = input("Nombre: ")
+            precio = float(input("Precio: "))
+            cantidad = int(input("Cantidad: "))
+            inventario.añadir_producto(nombre, precio, cantidad)
+
+        elif opcion == "2":
+            nombre = input("Nombre del producto a actualizar: ")
+            precio = float(input("Nuevo precio: "))
+            cantidad = int(input("Nueva cantidad: "))
+            inventario.actualizar_producto(nombre, precio, cantidad)
+
+        elif opcion == "3":
+            nombre = input("Nombre del producto a eliminar: ")
+            inventario.eliminar_producto(nombre)
+
+        elif opcion == "4":
+            inventario.mostrar_inventario()
+
+        elif opcion == "5":
+            print("👋 Saliendo del sistema...")
+            break
+
+        else:
+            print("⚠ Opción inválida.")
+
+
+# -----------------------------
+# Ejecutar programa
+# -----------------------------
+menu()
+
+
