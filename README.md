@@ -739,3 +739,98 @@ def menu():
 menu()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import tkinter as tk
+from tkinter import messagebox
+
+# Lista para almacenar tareas (texto, estado)
+tareas = []
+
+def agregar_tarea(event=None):
+    texto = entrada.get().strip()
+    if texto == "":
+        messagebox.showwarning("Advertencia", "Escribe una tarea")
+        return
+    
+    tareas.append([texto, False])  # False = pendiente
+    lista.insert(tk.END, texto)
+    entrada.delete(0, tk.END)
+
+def marcar_completada(event=None):
+    seleccion = lista.curselection()
+    if not seleccion:
+        return
+    
+    index = seleccion[0]
+    texto, estado = tareas[index]
+    
+    if not estado:
+        tareas[index][1] = True
+        lista.delete(index)
+        lista.insert(index, "✔ " + texto)
+        lista.itemconfig(index, fg="gray")
+    else:
+        tareas[index][1] = False
+        lista.delete(index)
+        lista.insert(index, texto)
+        lista.itemconfig(index, fg="black")
+
+def eliminar_tarea(event=None):
+    seleccion = lista.curselection()
+    if not seleccion:
+        return
+    
+    index = seleccion[0]
+    lista.delete(index)
+    tareas.pop(index)
+
+def cerrar_app(event=None):
+    root.destroy()
+
+# Ventana principal
+root = tk.Tk()
+root.title("Gestor de Tareas")
+root.geometry("400x400")
+
+# Campo de entrada
+entrada = tk.Entry(root, width=30)
+entrada.pack(pady=10)
+
+# Botones
+btn_agregar = tk.Button(root, text="Agregar Tarea", command=agregar_tarea)
+btn_agregar.pack(pady=5)
+
+btn_completar = tk.Button(root, text="Marcar Completada", command=marcar_completada)
+btn_completar.pack(pady=5)
+
+btn_eliminar = tk.Button(root, text="Eliminar Tarea", command=eliminar_tarea)
+btn_eliminar.pack(pady=5)
+
+# Lista de tareas
+lista = tk.Listbox(root, width=40, height=10)
+lista.pack(pady=10)
+
+# =========================
+# ATAJOS DE TECLADO
+# =========================
+root.bind("<Return>", agregar_tarea)        # Enter
+root.bind("<c>", marcar_completada)         # tecla C
+root.bind("<Delete>", eliminar_tarea)       # Suprimir
+root.bind("<Escape>", cerrar_app)           # Escape
+
+# Ejecutar app
+root.mainloop()
+
